@@ -54,8 +54,8 @@ WORKDIR /skeleton
 
 # 计划任务
 COPY crontab.root /var/spool/cron/crontabs/root
-RUN chmod 0755 /var/spool/cron/crontabs/root
-RUN crontab /var/spool/cron/crontabs/root
+RUN chmod 0755 /var/spool/cron/crontabs/root \
+    && crontab /var/spool/cron/crontabs/root
 
 RUN composer install --optimize-autoloader -o --no-dev
 
