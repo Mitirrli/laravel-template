@@ -7,7 +7,7 @@ use Collective\Annotations\Routing\Annotations\Annotations\Get;
 trait v3
 {
     /**
-     * @Get("/v3/test", as="测试接口")
+     * @Get("/v3/test", as="测试接口v3")
      */
     public function testV3()
     {
