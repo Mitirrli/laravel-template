@@ -1,0 +1,22 @@
+version: '3.7'
+
+services:
+  nginx:
+    container_name: skeleton_nginx
+    build:
+      context: ./
+      dockerfile: docker/NGINX.Dockerfile
+    ports:
+      - "8808:80"
+    environment:
+      TZ: 'Asia/Shanghai'
+    volumes:
+      - ./:/skeleton
+  php:
+    container_name: skeleton_php
+    build:
+      context: ./
+      dockerfile: docker/PHP.Dockerfile
+    restart: always
+    ports:
+      - "9009:9000"
