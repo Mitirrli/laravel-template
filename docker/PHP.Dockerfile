@@ -6,8 +6,8 @@ MAINTAINER Hampster <phper.blue@gmail.com>
 ENV PHPREDIS_VERSION=5.2.2
 
 # 更新镜像仓库
-RUN echo http://mirrors.aliyun.com/alpine/v3.12/main>/etc/apk/repositories \
-    && echo  http://mirrors.aliyun.com/alpine/v3.12/community>>/etc/apk/repositories
+RUN echo http://mirrors.aliyun.com/alpine/v3.12/main > /etc/apk/repositories \
+    && echo  http://mirrors.aliyun.com/alpine/v3.12/community >> /etc/apk/repositories
 
 RUN apk add --no-cache oniguruma-dev \
     curl-dev \
