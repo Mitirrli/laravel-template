@@ -44,9 +44,6 @@ RUN wget https://mirrors.aliyun.com/composer/composer.phar -O /usr/local/bin/com
     && rm -rf /tmp/redis.tar.tgz \
     && docker-php-ext-enable redis
 
-# 添加目录到Docker
-ADD . /skeleton
-
 COPY docker/uploads.ini /usr/local/etc/php/conf.d
 COPY docker/fpm/php-fpm.conf /usr/local/etc/php-fpm.d/php-fpm.conf
 
@@ -56,23 +53,6 @@ WORKDIR /skeleton
 COPY crontab.root /var/spool/cron/crontabs/root
 RUN chmod 0755 /var/spool/cron/crontabs/root \
     && crontab /var/spool/cron/crontabs/root
-
-RUN composer install --optimize-autoloader -o --no-dev
-
-# 赋予权限
-RUN chown -R www-data:www-data storage public bootstrap
-
-# 优化
-RUN php artisan route:scan && php artisan config:cache
-
-# Enable Opcache
-RUN { \
-        echo 'opcache.memory_consumption=128'; \
-        echo 'opcache.interned_strings_buffer=32'; \
-        echo 'opcache.max_accelerated_files=10000'; \
-        echo 'opcache.validate_timestamps=0'; \
-        echo 'opcache.fast_shutdown=1'; \
-    } > /usr/local/etc/php/conf.d/opcache.ini
 
 CMD crond && php-fpm
 
