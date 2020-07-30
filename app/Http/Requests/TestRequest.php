@@ -24,7 +24,7 @@ class TestRequest extends FormRequest
     public function rules()
     {
         return [
-            'id' => 'required|integer'
+            'id' => 'required|integer',
         ];
     }
 
@@ -32,7 +32,7 @@ class TestRequest extends FormRequest
     {
         return [
             'id.required' => 'id不能为空',
-            'id.integer' => 'id只能为整数'
+            'id.integer' => 'id只能为整数',
         ];
     }
 }

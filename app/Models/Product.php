@@ -10,14 +10,14 @@ class Product extends Model
     use SoftDeletes;
 
     /**
-     * 与模型关联的数据表
+     * 与模型关联的数据表.
      *
      * @var string
      */
     protected $table = 'products';
 
     /**
-     * 表主键
+     * 表主键.
      *
      * @var string
      */
@@ -31,7 +31,7 @@ class Product extends Model
     protected $dateFormat = 'U';
 
     /**
-     * 被禁止修改的字段
+     * 被禁止修改的字段.
      *
      * @var string[]
      */

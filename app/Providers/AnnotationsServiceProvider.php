@@ -4,8 +4,8 @@ namespace App\Providers;
 
 use Collective\Annotations\AnnotationsServiceProvider as ServiceProvider;
 
-class AnnotationsServiceProvider extends ServiceProvider {
-
+class AnnotationsServiceProvider extends ServiceProvider
+{
     /**
      * The classes to scan for event annotations.
      *
@@ -36,7 +36,7 @@ class AnnotationsServiceProvider extends ServiceProvider {
 
     /**
      * Determines whether or not to automatically scan the controllers
-     * directory (App\Http\Controllers) for routes
+     * directory (App\Http\Controllers) for routes.
      *
      * @var bool
      */
