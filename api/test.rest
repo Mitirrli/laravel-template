@@ -1,0 +1,5 @@
+# test api client
+
+###  GET请求
+GET {{url}}/v2/test  HTTP/1.1
+content-type: application/json
