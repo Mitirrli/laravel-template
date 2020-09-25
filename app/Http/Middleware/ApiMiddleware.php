@@ -16,6 +16,10 @@ class ApiMiddleware
     {
         $next($request);
 
-        return response()->json(rt()->getResult());
+        $result = rt()->getResult();
+
+        ksort($result);
+
+        return response()->json($result);
     }
 }
