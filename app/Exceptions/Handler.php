@@ -40,13 +40,15 @@ class Handler extends ExceptionHandler
      * Render an exception into an HTTP response.
      *
      * @param \Illuminate\Http\Request $request
-     * @throws \Throwable
      * @return \Symfony\Component\HttpFoundation\Response
+     * @throws \Throwable
      */
     public function render($request, Throwable $exception)
     {
         if ($exception instanceof ValidationException) {
-            return response()->json(['msg' => $exception->{'validator'}->errors()->first(), 'data' => []], 422);
+            return response()->json([
+                'error' => ['code' => 422, 'message' => $exception->{'validator'}->errors()->first(), 'status' => 'Unprocessable Entity']
+            ]);
         }
 
         return parent::render($request, $exception);
