@@ -44,8 +44,8 @@ RUN wget https://mirrors.aliyun.com/composer/composer.phar -O /usr/local/bin/com
     && rm -rf /tmp/redis.tar.tgz \
     && docker-php-ext-enable redis
 
-COPY docker/uploads.ini /usr/local/etc/php/conf.d
-COPY docker/fpm /usr/local/etc/
+COPY .docker/uploads.ini /usr/local/etc/php/conf.d
+COPY .docker/fpm /usr/local/etc/
 
 WORKDIR /skeleton
 
