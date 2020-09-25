@@ -7,5 +7,5 @@ use App\Tools\RT;
  */
 function rt()
 {
-    return new RT;
+    return new RT();
 }
