@@ -20,7 +20,7 @@ $ php artisan module:make module-name
 'modules' => base_path('app/Modules')
 ```
 
-```shell script
+```php
 使用注解
 
 /**
@@ -31,6 +31,13 @@ $ php artisan module:make module-name
 protected $scanRoutes = [
   'App\Modules\Circle\Http\Controllers\CircleController',
 ];
+```
+
+```php
+删除服务提供者中对应的无用方法
+
+$this->registerViews();
+$this->registerFactories();
 ```
 
 ```shell script
