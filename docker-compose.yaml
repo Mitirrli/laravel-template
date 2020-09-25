@@ -5,7 +5,7 @@ services:
     container_name: skeleton_nginx
     build:
       context: ./
-      dockerfile: .docker/NGINX.Dockerfile
+      dockerfile: .docker/nginx/Dockerfile
     ports:
       - "8808:80"
     environment:
@@ -16,7 +16,7 @@ services:
     container_name: skeleton_php
     build:
       context: ./
-      dockerfile: .docker/PHP.Dockerfile
+      dockerfile: .docker/fpm/Dockerfile
     ports:
       - "9009:9000"
     volumes:
