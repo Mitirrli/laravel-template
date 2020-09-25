@@ -6,7 +6,7 @@ use App\Http\Controller;
 use Collective\Annotations\Routing\Annotations\Annotations\Middleware;
 
 /**
- * @Middleware("throttle:60,1")
+ * @Middleware("api")
  */
 class TestController extends Controller
 {
