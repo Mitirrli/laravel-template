@@ -54,10 +54,6 @@ COPY crontab.root /var/spool/cron/crontabs/root
 RUN chmod 0755 /var/spool/cron/crontabs/root \
     && crontab /var/spool/cron/crontabs/root
 
-RUN mkdir storage runtime \
-    && chown -R www-data:www-data storage \
-    && chown -R www-data:www-data runtime
-
 CMD crond && php-fpm
 
 EXPOSE 80
