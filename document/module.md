@@ -32,3 +32,9 @@ protected $scanRoutes = [
   'App\Modules\Circle\Http\Controllers\CircleController',
 ];
 ```
+
+```shell script
+生成模型
+
+$ php artisan module:make-model Question Circle
+```
