@@ -10,3 +10,7 @@ $ composer i
 
 $ chown -R www-data:www-data storage/ bootstrap/
 ```
+
+```shell script
+$ php artisan route:scan
+```
