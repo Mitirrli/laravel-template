@@ -47,7 +47,7 @@ class Handler extends ExceptionHandler
     {
         if ($exception instanceof ValidationException) {
             return response()->json([
-                'error' => ['code' => 422, 'message' => $exception->{'validator'}->errors()->first(), 'status' => 'Unprocessable Entity']
+                'error' => ['code' => 422, 'message' => $exception->{'validator'}->errors()->first()]
             ]);
         }
 
