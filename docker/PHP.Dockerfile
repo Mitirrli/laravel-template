@@ -1,4 +1,4 @@
-FROM php:7.4-fpm-alpine
+FROM php:7.4.10-fpm-alpine
 
 MAINTAINER Hampster <phper.blue@gmail.com>
 
@@ -45,7 +45,7 @@ RUN wget https://mirrors.aliyun.com/composer/composer.phar -O /usr/local/bin/com
     && docker-php-ext-enable redis
 
 COPY docker/uploads.ini /usr/local/etc/php/conf.d
-COPY docker/fpm/php-fpm.conf /usr/local/etc/php-fpm.d/php-fpm.conf
+COPY docker/fpm /usr/local/etc/
 
 WORKDIR /skeleton
 
@@ -53,6 +53,10 @@ WORKDIR /skeleton
 COPY crontab.root /var/spool/cron/crontabs/root
 RUN chmod 0755 /var/spool/cron/crontabs/root \
     && crontab /var/spool/cron/crontabs/root
+
+RUN mkdir storage runtime \
+    && chown -R www-data:www-data storage \
+    && chown -R www-data:www-data runtime
 
 CMD crond && php-fpm
 
