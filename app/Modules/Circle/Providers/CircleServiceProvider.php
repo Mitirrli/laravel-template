@@ -26,8 +26,6 @@ class CircleServiceProvider extends ServiceProvider
     {
         $this->registerTranslations();
         $this->registerConfig();
-        $this->registerViews();
-        $this->registerFactories();
         $this->loadMigrationsFrom(module_path($this->moduleName, 'Database/Migrations'));
     }
 
