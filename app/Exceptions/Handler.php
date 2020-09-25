@@ -46,11 +46,11 @@ class Handler extends ExceptionHandler
     public function render($request, Throwable $exception)
     {
         if ($exception instanceof ValidationException) {
-            rt()->setErrCode(422)->setErrMessage($exception->{'validator'}->errors()->first());
+            rt()->errCode(422)->errMessage($exception->{'validator'}->errors()->first());
         }
 
         if ($exception instanceof BusinessException) {
-            rt()->setErrCode($exception->getCode())->setErrMessage($exception->getMessage());
+            rt()->errCode($exception->getCode())->errMessage($exception->getMessage());
         }
 
         return parent::render($request, $exception);
