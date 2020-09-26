@@ -22,7 +22,7 @@ class ApiMiddleware
     {
         $next($request);
 
-        $result = rt()->getResult();
+        $result = Rt()->getResult();
 
         //常规返回 赋予默认值
         if (!array_key_exists('error', $result)) {

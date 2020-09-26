@@ -14,6 +14,6 @@ trait v2
     {
         $params = $request->validated();
 
-        rt()->message('Just for test');
+        Rt()->message('Just for test');
     }
 }

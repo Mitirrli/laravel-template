@@ -5,7 +5,7 @@ use App\Tools\RT;
 /**
  * @return RT
  */
-function rt()
+function Rt()
 {
     return new RT();
 }
