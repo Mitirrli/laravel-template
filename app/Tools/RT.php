@@ -4,12 +4,6 @@ namespace App\Tools;
 
 class RT
 {
-    const DEFAULT_DATA = [];
-
-    const DEFAULT_CODE = 1000;
-
-    const DEFAULT_MESSAGE = 'success';
-
     public static array $data = [];
 
     public function errCode(int $code): RT
@@ -26,17 +20,8 @@ class RT
         return $this;
     }
 
-    public function initParam()
-    {
-        self::$data['data'] = self::DEFAULT_DATA;
-        self::$data['code'] = self::DEFAULT_CODE;
-        self::$data['message'] = self::DEFAULT_MESSAGE;
-    }
-
     public function data($data): RT
     {
-        $this->initParam();
-
         self::$data['data'] = $data;
 
         return $this;
@@ -44,8 +29,6 @@ class RT
 
     public function code(int $code): RT
     {
-        $this->initParam();
-
         self::$data['code'] = $code;
 
         return $this;
@@ -53,8 +36,6 @@ class RT
 
     public function message(string $message): RT
     {
-        $this->initParam();
-
         self::$data['message'] = $message;
 
         return $this;
