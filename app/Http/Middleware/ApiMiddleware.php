@@ -25,7 +25,7 @@ class ApiMiddleware
         $result = Rt()->getResult();
 
         //常规返回 赋予默认值
-        if (!array_key_exists('error', $result)) {
+        if (! array_key_exists('error', $result)) {
             $result['code'] ??= self::DEFAULT_CODE;
             $result['data'] ??= self::DEFAULT_DATA;
             $result['message'] ??= self::DEFAULT_MESSAGE;
