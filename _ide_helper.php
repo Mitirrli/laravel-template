@@ -1,15 +1,6 @@
 <?php
 
 
-    /**
-     * A helper file for Laravel, to provide autocomplete information to your IDE
-     * Generated for Laravel 8.6.0.
-     *
-     * This file should not be included in your code, only analyzed by your IDE!
-     *
-     * @see https://github.com/barryvdh/laravel-ide-helper
-     */
-
 namespace Illuminate\Support\Facades {
         /**
          * @see \Illuminate\Contracts\Foundation\Application
@@ -568,6 +559,9 @@ namespace Illuminate\Support\Facades {
 
             /**
              * @static
+             * @param mixed $request
+             * @param mixed $type
+             * @param mixed $catch
              */
             public static function handle($request, $type = 1, $catch = true)
             {
@@ -12275,6 +12269,7 @@ namespace Nwidart\Modules\Facades {
 
             /**
              * @static
+             * @param mixed $name
              */
             public static function find($name)
             {            //Method inherited from \Nwidart\Modules\FileRepository
@@ -12284,6 +12279,7 @@ namespace Nwidart\Modules\Facades {
 
             /**
              * @static
+             * @param mixed $alias
              */
             public static function findByAlias($alias)
             {            //Method inherited from \Nwidart\Modules\FileRepository
@@ -12293,6 +12289,7 @@ namespace Nwidart\Modules\Facades {
 
             /**
              * @static
+             * @param mixed $name
              */
             public static function findRequirements($name)
             {            //Method inherited from \Nwidart\Modules\FileRepository
@@ -12342,6 +12339,7 @@ namespace Nwidart\Modules\Facades {
 
             /**
              * @static
+             * @param mixed $module
              */
             public static function assetPath($module)
             {            //Method inherited from \Nwidart\Modules\FileRepository
@@ -12351,6 +12349,8 @@ namespace Nwidart\Modules\Facades {
 
             /**
              * @static
+             * @param mixed $key
+             * @param null|mixed $default
              */
             public static function config($key, $default = null)
             {            //Method inherited from \Nwidart\Modules\FileRepository
@@ -12447,6 +12447,7 @@ namespace Nwidart\Modules\Facades {
 
             /**
              * @static
+             * @param mixed $name
              */
             public static function isEnabled($name)
             {            //Method inherited from \Nwidart\Modules\FileRepository
@@ -12456,6 +12457,7 @@ namespace Nwidart\Modules\Facades {
 
             /**
              * @static
+             * @param mixed $name
              */
             public static function isDisabled($name)
             {            //Method inherited from \Nwidart\Modules\FileRepository
@@ -12491,6 +12493,7 @@ namespace Nwidart\Modules\Facades {
 
             /**
              * @static
+             * @param mixed $name
              */
             public static function delete($name)
             {            //Method inherited from \Nwidart\Modules\FileRepository
