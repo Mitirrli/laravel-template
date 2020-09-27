@@ -53,6 +53,10 @@ class Handler extends ExceptionHandler
             Rt()->errCode($exception->getCode())->errMessage($exception->getMessage());
         }
 
+        if ($exception instanceof SystemException) {
+            Rt()->errCode(67)->errMessage('System error!');
+        }
+
         return parent::render($request, $exception);
     }
 }
