@@ -1588,8 +1588,6 @@ namespace Illuminate\Support\Facades {
             }
         }
         /**
-         * @method static \Illuminate\Contracts\Cache\Lock lock(string $name, int $seconds = 0, mixed $owner = null)
-         * @method static \Illuminate\Contracts\Cache\Lock restoreLock(string $name, string $owner)
          * @see \Illuminate\Cache\CacheManager
          * @see \Illuminate\Cache\Repository
          */
@@ -2196,6 +2194,35 @@ namespace Illuminate\Support\Facades {
             }
 
             /**
+             * Get a lock instance.
+             *
+             * @param string $name
+             * @param int $seconds
+             * @param null|string $owner
+             * @return \Illuminate\Contracts\Cache\Lock
+             * @static
+             */
+            public static function lock($name, $seconds = 0, $owner = null)
+            {
+                /* @var \Illuminate\Cache\RedisStore $instance */
+                return $instance->lock($name, $seconds, $owner);
+            }
+
+            /**
+             * Restore a lock instance using the owner identifier.
+             *
+             * @param string $name
+             * @param string $owner
+             * @return \Illuminate\Contracts\Cache\Lock
+             * @static
+             */
+            public static function restoreLock($name, $owner)
+            {
+                /* @var \Illuminate\Cache\RedisStore $instance */
+                return $instance->restoreLock($name, $owner);
+            }
+
+            /**
              * Remove all items from the cache.
              *
              * @return bool
@@ -2203,32 +2230,44 @@ namespace Illuminate\Support\Facades {
              */
             public static function flush()
             {
-                /* @var \Illuminate\Cache\FileStore $instance */
+                /* @var \Illuminate\Cache\RedisStore $instance */
                 return $instance->flush();
             }
 
             /**
-             * Get the Filesystem instance.
+             * Get the Redis connection instance.
              *
-             * @return \Illuminate\Filesystem\Filesystem
+             * @return \Illuminate\Redis\Connections\Connection
              * @static
              */
-            public static function getFilesystem()
+            public static function connection()
             {
-                /* @var \Illuminate\Cache\FileStore $instance */
-                return $instance->getFilesystem();
+                /* @var \Illuminate\Cache\RedisStore $instance */
+                return $instance->connection();
             }
 
             /**
-             * Get the working directory of the cache.
+             * Set the connection name to be used.
              *
-             * @return string
+             * @param string $connection
              * @static
              */
-            public static function getDirectory()
+            public static function setConnection($connection)
             {
-                /* @var \Illuminate\Cache\FileStore $instance */
-                return $instance->getDirectory();
+                /* @var \Illuminate\Cache\RedisStore $instance */
+                $instance->setConnection($connection);
+            }
+
+            /**
+             * Get the Redis database instance.
+             *
+             * @return \Illuminate\Contracts\Redis\Factory
+             * @static
+             */
+            public static function getRedis()
+            {
+                /* @var \Illuminate\Cache\RedisStore $instance */
+                return $instance->getRedis();
             }
 
             /**
@@ -2239,8 +2278,20 @@ namespace Illuminate\Support\Facades {
              */
             public static function getPrefix()
             {
-                /* @var \Illuminate\Cache\FileStore $instance */
+                /* @var \Illuminate\Cache\RedisStore $instance */
                 return $instance->getPrefix();
+            }
+
+            /**
+             * Set the cache key prefix.
+             *
+             * @param string $prefix
+             * @static
+             */
+            public static function setPrefix($prefix)
+            {
+                /* @var \Illuminate\Cache\RedisStore $instance */
+                $instance->setPrefix($prefix);
             }
         }
         /**
@@ -8645,6 +8696,646 @@ namespace Illuminate\Support\Facades {
             }
         }
         /**
+         * @see \Illuminate\Session\SessionManager
+         * @see \Illuminate\Session\Store
+         */
+        class Session
+        {
+            /**
+             * Determine if requests for the same session should wait for each to finish before executing.
+             *
+             * @return bool
+             * @static
+             */
+            public static function shouldBlock()
+            {
+                /* @var \Illuminate\Session\SessionManager $instance */
+                return $instance->shouldBlock();
+            }
+
+            /**
+             * Get the name of the cache store / driver that should be used to acquire session locks.
+             *
+             * @return null|string
+             * @static
+             */
+            public static function blockDriver()
+            {
+                /* @var \Illuminate\Session\SessionManager $instance */
+                return $instance->blockDriver();
+            }
+
+            /**
+             * Get the session configuration.
+             *
+             * @return array
+             * @static
+             */
+            public static function getSessionConfig()
+            {
+                /* @var \Illuminate\Session\SessionManager $instance */
+                return $instance->getSessionConfig();
+            }
+
+            /**
+             * Get the default session driver name.
+             *
+             * @return string
+             * @static
+             */
+            public static function getDefaultDriver()
+            {
+                /* @var \Illuminate\Session\SessionManager $instance */
+                return $instance->getDefaultDriver();
+            }
+
+            /**
+             * Set the default session driver name.
+             *
+             * @param string $name
+             * @static
+             */
+            public static function setDefaultDriver($name)
+            {
+                /* @var \Illuminate\Session\SessionManager $instance */
+                $instance->setDefaultDriver($name);
+            }
+
+            /**
+             * Get a driver instance.
+             *
+             * @param null|string $driver
+             * @throws \InvalidArgumentException
+             * @return mixed
+             * @static
+             */
+            public static function driver($driver = null)
+            {            //Method inherited from \Illuminate\Support\Manager
+                /* @var \Illuminate\Session\SessionManager $instance */
+                return $instance->driver($driver);
+            }
+
+            /**
+             * Register a custom driver creator Closure.
+             *
+             * @param string $driver
+             * @param \Closure $callback
+             * @return \Illuminate\Session\SessionManager
+             * @static
+             */
+            public static function extend($driver, $callback)
+            {            //Method inherited from \Illuminate\Support\Manager
+                /* @var \Illuminate\Session\SessionManager $instance */
+                return $instance->extend($driver, $callback);
+            }
+
+            /**
+             * Get all of the created "drivers".
+             *
+             * @return array
+             * @static
+             */
+            public static function getDrivers()
+            {            //Method inherited from \Illuminate\Support\Manager
+                /* @var \Illuminate\Session\SessionManager $instance */
+                return $instance->getDrivers();
+            }
+
+            /**
+             * Start the session, reading the data from a handler.
+             *
+             * @return bool
+             * @static
+             */
+            public static function start()
+            {
+                /* @var \Illuminate\Session\Store $instance */
+                return $instance->start();
+            }
+
+            /**
+             * Save the session data to storage.
+             *
+             * @static
+             */
+            public static function save()
+            {
+                /* @var \Illuminate\Session\Store $instance */
+                $instance->save();
+            }
+
+            /**
+             * Age the flash data for the session.
+             *
+             * @static
+             */
+            public static function ageFlashData()
+            {
+                /* @var \Illuminate\Session\Store $instance */
+                $instance->ageFlashData();
+            }
+
+            /**
+             * Get all of the session data.
+             *
+             * @return array
+             * @static
+             */
+            public static function all()
+            {
+                /* @var \Illuminate\Session\Store $instance */
+                return $instance->all();
+            }
+
+            /**
+             * Get a subset of the session data.
+             *
+             * @param array $keys
+             * @return array
+             * @static
+             */
+            public static function only($keys)
+            {
+                /* @var \Illuminate\Session\Store $instance */
+                return $instance->only($keys);
+            }
+
+            /**
+             * Checks if a key exists.
+             *
+             * @param array|string $key
+             * @return bool
+             * @static
+             */
+            public static function exists($key)
+            {
+                /* @var \Illuminate\Session\Store $instance */
+                return $instance->exists($key);
+            }
+
+            /**
+             * Checks if a key is present and not null.
+             *
+             * @param array|string $key
+             * @return bool
+             * @static
+             */
+            public static function has($key)
+            {
+                /* @var \Illuminate\Session\Store $instance */
+                return $instance->has($key);
+            }
+
+            /**
+             * Get an item from the session.
+             *
+             * @param string $key
+             * @param mixed $default
+             * @return mixed
+             * @static
+             */
+            public static function get($key, $default = null)
+            {
+                /* @var \Illuminate\Session\Store $instance */
+                return $instance->get($key, $default);
+            }
+
+            /**
+             * Get the value of a given key and then forget it.
+             *
+             * @param string $key
+             * @param mixed $default
+             * @return mixed
+             * @static
+             */
+            public static function pull($key, $default = null)
+            {
+                /* @var \Illuminate\Session\Store $instance */
+                return $instance->pull($key, $default);
+            }
+
+            /**
+             * Determine if the session contains old input.
+             *
+             * @param null|string $key
+             * @return bool
+             * @static
+             */
+            public static function hasOldInput($key = null)
+            {
+                /* @var \Illuminate\Session\Store $instance */
+                return $instance->hasOldInput($key);
+            }
+
+            /**
+             * Get the requested item from the flashed input array.
+             *
+             * @param null|string $key
+             * @param mixed $default
+             * @return mixed
+             * @static
+             */
+            public static function getOldInput($key = null, $default = null)
+            {
+                /* @var \Illuminate\Session\Store $instance */
+                return $instance->getOldInput($key, $default);
+            }
+
+            /**
+             * Replace the given session attributes entirely.
+             *
+             * @param array $attributes
+             * @static
+             */
+            public static function replace($attributes)
+            {
+                /* @var \Illuminate\Session\Store $instance */
+                $instance->replace($attributes);
+            }
+
+            /**
+             * Put a key / value pair or array of key / value pairs in the session.
+             *
+             * @param array|string $key
+             * @param mixed $value
+             * @static
+             */
+            public static function put($key, $value = null)
+            {
+                /* @var \Illuminate\Session\Store $instance */
+                $instance->put($key, $value);
+            }
+
+            /**
+             * Get an item from the session, or store the default value.
+             *
+             * @param string $key
+             * @param \Closure $callback
+             * @return mixed
+             * @static
+             */
+            public static function remember($key, $callback)
+            {
+                /* @var \Illuminate\Session\Store $instance */
+                return $instance->remember($key, $callback);
+            }
+
+            /**
+             * Push a value onto a session array.
+             *
+             * @param string $key
+             * @param mixed $value
+             * @static
+             */
+            public static function push($key, $value)
+            {
+                /* @var \Illuminate\Session\Store $instance */
+                $instance->push($key, $value);
+            }
+
+            /**
+             * Increment the value of an item in the session.
+             *
+             * @param string $key
+             * @param int $amount
+             * @return mixed
+             * @static
+             */
+            public static function increment($key, $amount = 1)
+            {
+                /* @var \Illuminate\Session\Store $instance */
+                return $instance->increment($key, $amount);
+            }
+
+            /**
+             * Decrement the value of an item in the session.
+             *
+             * @param string $key
+             * @param int $amount
+             * @return int
+             * @static
+             */
+            public static function decrement($key, $amount = 1)
+            {
+                /* @var \Illuminate\Session\Store $instance */
+                return $instance->decrement($key, $amount);
+            }
+
+            /**
+             * Flash a key / value pair to the session.
+             *
+             * @param string $key
+             * @param mixed $value
+             * @static
+             */
+            public static function flash($key, $value = true)
+            {
+                /* @var \Illuminate\Session\Store $instance */
+                $instance->flash($key, $value);
+            }
+
+            /**
+             * Flash a key / value pair to the session for immediate use.
+             *
+             * @param string $key
+             * @param mixed $value
+             * @static
+             */
+            public static function now($key, $value)
+            {
+                /* @var \Illuminate\Session\Store $instance */
+                $instance->now($key, $value);
+            }
+
+            /**
+             * Reflash all of the session flash data.
+             *
+             * @static
+             */
+            public static function reflash()
+            {
+                /* @var \Illuminate\Session\Store $instance */
+                $instance->reflash();
+            }
+
+            /**
+             * Reflash a subset of the current flash data.
+             *
+             * @param array|mixed $keys
+             * @static
+             */
+            public static function keep($keys = null)
+            {
+                /* @var \Illuminate\Session\Store $instance */
+                $instance->keep($keys);
+            }
+
+            /**
+             * Flash an input array to the session.
+             *
+             * @param array $value
+             * @static
+             */
+            public static function flashInput($value)
+            {
+                /* @var \Illuminate\Session\Store $instance */
+                $instance->flashInput($value);
+            }
+
+            /**
+             * Remove an item from the session, returning its value.
+             *
+             * @param string $key
+             * @return mixed
+             * @static
+             */
+            public static function remove($key)
+            {
+                /* @var \Illuminate\Session\Store $instance */
+                return $instance->remove($key);
+            }
+
+            /**
+             * Remove one or many items from the session.
+             *
+             * @param array|string $keys
+             * @static
+             */
+            public static function forget($keys)
+            {
+                /* @var \Illuminate\Session\Store $instance */
+                $instance->forget($keys);
+            }
+
+            /**
+             * Remove all of the items from the session.
+             *
+             * @static
+             */
+            public static function flush()
+            {
+                /* @var \Illuminate\Session\Store $instance */
+                $instance->flush();
+            }
+
+            /**
+             * Flush the session data and regenerate the ID.
+             *
+             * @return bool
+             * @static
+             */
+            public static function invalidate()
+            {
+                /* @var \Illuminate\Session\Store $instance */
+                return $instance->invalidate();
+            }
+
+            /**
+             * Generate a new session identifier.
+             *
+             * @param bool $destroy
+             * @return bool
+             * @static
+             */
+            public static function regenerate($destroy = false)
+            {
+                /* @var \Illuminate\Session\Store $instance */
+                return $instance->regenerate($destroy);
+            }
+
+            /**
+             * Generate a new session ID for the session.
+             *
+             * @param bool $destroy
+             * @return bool
+             * @static
+             */
+            public static function migrate($destroy = false)
+            {
+                /* @var \Illuminate\Session\Store $instance */
+                return $instance->migrate($destroy);
+            }
+
+            /**
+             * Determine if the session has been started.
+             *
+             * @return bool
+             * @static
+             */
+            public static function isStarted()
+            {
+                /* @var \Illuminate\Session\Store $instance */
+                return $instance->isStarted();
+            }
+
+            /**
+             * Get the name of the session.
+             *
+             * @return string
+             * @static
+             */
+            public static function getName()
+            {
+                /* @var \Illuminate\Session\Store $instance */
+                return $instance->getName();
+            }
+
+            /**
+             * Set the name of the session.
+             *
+             * @param string $name
+             * @static
+             */
+            public static function setName($name)
+            {
+                /* @var \Illuminate\Session\Store $instance */
+                $instance->setName($name);
+            }
+
+            /**
+             * Get the current session ID.
+             *
+             * @return string
+             * @static
+             */
+            public static function getId()
+            {
+                /* @var \Illuminate\Session\Store $instance */
+                return $instance->getId();
+            }
+
+            /**
+             * Set the session ID.
+             *
+             * @param string $id
+             * @static
+             */
+            public static function setId($id)
+            {
+                /* @var \Illuminate\Session\Store $instance */
+                $instance->setId($id);
+            }
+
+            /**
+             * Determine if this is a valid session ID.
+             *
+             * @param string $id
+             * @return bool
+             * @static
+             */
+            public static function isValidId($id)
+            {
+                /* @var \Illuminate\Session\Store $instance */
+                return $instance->isValidId($id);
+            }
+
+            /**
+             * Set the existence of the session on the handler if applicable.
+             *
+             * @param bool $value
+             * @static
+             */
+            public static function setExists($value)
+            {
+                /* @var \Illuminate\Session\Store $instance */
+                $instance->setExists($value);
+            }
+
+            /**
+             * Get the CSRF token value.
+             *
+             * @return string
+             * @static
+             */
+            public static function token()
+            {
+                /* @var \Illuminate\Session\Store $instance */
+                return $instance->token();
+            }
+
+            /**
+             * Regenerate the CSRF token value.
+             *
+             * @static
+             */
+            public static function regenerateToken()
+            {
+                /* @var \Illuminate\Session\Store $instance */
+                $instance->regenerateToken();
+            }
+
+            /**
+             * Get the previous URL from the session.
+             *
+             * @return null|string
+             * @static
+             */
+            public static function previousUrl()
+            {
+                /* @var \Illuminate\Session\Store $instance */
+                return $instance->previousUrl();
+            }
+
+            /**
+             * Set the "previous" URL in the session.
+             *
+             * @param string $url
+             * @static
+             */
+            public static function setPreviousUrl($url)
+            {
+                /* @var \Illuminate\Session\Store $instance */
+                $instance->setPreviousUrl($url);
+            }
+
+            /**
+             * Specify that the user has confirmed their password.
+             *
+             * @static
+             */
+            public static function passwordConfirmed()
+            {
+                /* @var \Illuminate\Session\Store $instance */
+                $instance->passwordConfirmed();
+            }
+
+            /**
+             * Get the underlying session handler implementation.
+             *
+             * @return \SessionHandlerInterface
+             * @static
+             */
+            public static function getHandler()
+            {
+                /* @var \Illuminate\Session\Store $instance */
+                return $instance->getHandler();
+            }
+
+            /**
+             * Determine if the session handler needs a request.
+             *
+             * @return bool
+             * @static
+             */
+            public static function handlerNeedsRequest()
+            {
+                /* @var \Illuminate\Session\Store $instance */
+                return $instance->handlerNeedsRequest();
+            }
+
+            /**
+             * Set the request on the handler instance.
+             *
+             * @param \Illuminate\Http\Request $request
+             * @static
+             */
+            public static function setRequestOnHandler($request)
+            {
+                /* @var \Illuminate\Session\Store $instance */
+                $instance->setRequestOnHandler($request);
+            }
+        }
+        /**
          * @see \Illuminate\Database\Schema\Builder
          */
         class Schema
@@ -14956,6 +15647,9 @@ namespace  {
             {
             }
             class Response extends \Illuminate\Support\Facades\Response
+            {
+            }
+            class Session extends \Illuminate\Support\Facades\Session
             {
             }
             class Schema extends \Illuminate\Support\Facades\Schema
