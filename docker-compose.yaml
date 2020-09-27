@@ -21,3 +21,8 @@ services:
       - "9009:9000"
     volumes:
       - ./:/skeleton
+  redis:
+    container_name: skeleton_redis
+    image: redis:latest
+    ports:
+      - "6999:6379"
