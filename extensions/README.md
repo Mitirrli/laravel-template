@@ -8,12 +8,12 @@ mkdir in the extension and init your composer.
 项目中使用未发布的组件包
 假设项目目录如下
 
-/opt/ 项目目录
-/opt/extension 组件包目录
+/ 项目目录
+/extension 组件包目录
 
 假设组件名为 your_component/your_component
 
-修改 /opt/project/composer.json
+修改 /composer.json
 
 以下省略其他不相干的配置
 
@@ -24,7 +24,7 @@ mkdir in the extension and init your composer.
     "repositories": {
         "your_component": {
             "type": "path",
-            "url": "/opt/extension/your_component"
+            "url": "extension/your_component"
         }
     }
 }
