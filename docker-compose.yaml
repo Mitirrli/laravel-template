@@ -25,4 +25,4 @@ services:
     container_name: skeleton_redis
     image: redis:latest
     ports:
-      - "6999:6379"
+      - "6949:6379"
