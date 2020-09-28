@@ -6,7 +6,7 @@ $ docker exec -it skeleton_php sh
 ```
 
 ```shell script
-$ composer i
+$ composer i --no-dev
 
 $ chown -R www-data:www-data storage/ bootstrap/
 ```
