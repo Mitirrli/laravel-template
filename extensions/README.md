@@ -28,4 +28,55 @@ mkdir in the extension and init your composer.
         }
     }
 }
+
+examples:
+
+"require-dev": {
+    ...
+    "mitirrli/model-cache": "^0.0.1",
+}
+
+"repositories": {
+    "model-cache": {
+        "type": "path",
+        "url": "/skeleton/extensions/model-cache"
+     }
+},
+```
+
+composer包开发
+
+
+
+```php
+发布配置文件
+
+<?php
+
+namespace Mitirrli\Cache\Providers;
+
+use Illuminate\Support\ServiceProvider;
+
+class Service extends ServiceProvider
+{
+    protected $defer = true;
+
+    public function boot()
+    {
+        $configPath = __DIR__ . '/../../config/model-cache.php';
+
+        $this->publishes([
+            $configPath => config_path('model-cache.php')
+        ]);
+    }
+}
+
+
+"extra": {
+    "laravel": {
+        "providers": [
+            "Mitirrli\\Cache\\Providers\\Service"
+        ]
+    }
+}
 ```
