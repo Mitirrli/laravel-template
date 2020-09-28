@@ -7164,9 +7164,21 @@
             "dist": {
                 "type": "path",
                 "url": "/skeleton/extensions/model-cache",
-                "reference": "976592ba6f57ced8efe84cb79ff26cd21fe67d11"
+                "reference": "b787a8b3be80dfc365817426a0ef4c84c2f5617f"
             },
             "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Mitirrli\\Cache\\Providers\\Service"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Mitirrli\\Cache\\": "src/"
+                }
+            },
             "license": [
                 "MIT"
             ],
@@ -9094,16 +9106,16 @@
         },
         {
             "name": "sebastian/resource-operations",
-            "version": "3.0.2",
+            "version": "3.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/resource-operations.git",
-                "reference": "0653718a5a629b065e91f774595267f8dc32e213"
+                "reference": "0f4443cb3a1d92ce809899753bc0d5d5a8dd19a8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/resource-operations/zipball/0653718a5a629b065e91f774595267f8dc32e213",
-                "reference": "0653718a5a629b065e91f774595267f8dc32e213",
+                "url": "https://api.github.com/repos/sebastianbergmann/resource-operations/zipball/0f4443cb3a1d92ce809899753bc0d5d5a8dd19a8",
+                "reference": "0f4443cb3a1d92ce809899753bc0d5d5a8dd19a8",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -9113,7 +9125,7 @@
                 ]
             },
             "require": {
-                "php": "^7.3 || ^8.0"
+                "php": ">=7.3"
             },
             "require-dev": {
                 "phpunit/phpunit": "^9.0"
@@ -9147,7 +9159,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-06-26T12:16:22+00:00"
+            "time": "2020-09-28T06:45:17+00:00"
         },
         {
             "name": "sebastian/type",
@@ -9209,16 +9221,16 @@
         },
         {
             "name": "sebastian/version",
-            "version": "3.0.1",
+            "version": "3.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/version.git",
-                "reference": "626586115d0ed31cb71483be55beb759b5af5a3c"
+                "reference": "c6c1022351a901512170118436c764e473f6de8c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/version/zipball/626586115d0ed31cb71483be55beb759b5af5a3c",
-                "reference": "626586115d0ed31cb71483be55beb759b5af5a3c",
+                "url": "https://api.github.com/repos/sebastianbergmann/version/zipball/c6c1022351a901512170118436c764e473f6de8c",
+                "reference": "c6c1022351a901512170118436c764e473f6de8c",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -9228,7 +9240,7 @@
                 ]
             },
             "require": {
-                "php": "^7.3 || ^8.0"
+                "php": ">=7.3"
             },
             "type": "library",
             "extra": {
@@ -9260,7 +9272,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-06-26T12:18:43+00:00"
+            "time": "2020-09-28T06:39:44+00:00"
         },
         {
             "name": "seld/jsonlint",
