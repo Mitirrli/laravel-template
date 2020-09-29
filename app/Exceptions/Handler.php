@@ -16,6 +16,7 @@ class Handler extends ExceptionHandler
      * @var array
      */
     protected $dontReport = [
+        BusinessException::class
     ];
 
     /**
@@ -42,23 +43,26 @@ class Handler extends ExceptionHandler
      * Render an exception into an HTTP response.
      *
      * @param \Illuminate\Http\Request $request
-     * @throws \Throwable
      * @return \Symfony\Component\HttpFoundation\Response
+     * @throws \Throwable
      */
     public function render($request, Throwable $exception)
     {
         if ($exception instanceof ValidationException) {
             Rt()->errCode(422)->errMessage($exception->{'validator'}->errors()->first());
+
+            goto loop;
         }
 
         if ($exception instanceof BusinessException) {
             Rt()->errCode($exception->getCode())->errMessage($exception->getMessage());
+
+            goto loop;
         }
 
-        if ($exception instanceof SystemException) {
-            Rt()->errCode(67)->errMessage('System error!');
-        }
+        Rt()->errCode(67)->errMessage('System error!');
 
+        loop:
         return parent::render($request, $exception);
     }
 }
