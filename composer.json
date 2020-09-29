@@ -15,6 +15,7 @@
         "firebase/php-jwt": "^5.2",
         "friendsofphp/php-cs-fixer": "^2.16",
         "fruitcake/laravel-cors": "^1.0",
+        "genealabs/laravel-model-caching": "^0.11.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.0",
         "laravel/tinker": "^2.0",
@@ -34,7 +35,7 @@
     "repositories": {
         "model-cache": {
             "type": "path",
-            "url": "/skeleton/extensions/model-cache"
+            "url": "extensions/model-cache"
         }
     },
     "config": {
