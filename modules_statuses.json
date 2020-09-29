@@ -1,6 +1,5 @@
 {
-    "Circle": true,
     "Chat": true,
-    "User": true
+    "User": true,
+    "Circle": true
 }
-
