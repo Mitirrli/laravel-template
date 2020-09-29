@@ -87,6 +87,8 @@ return PhpCsFixer\Config::create()
             ->exclude('storage')
             ->exclude('vendor')
             ->exclude('tests')
+            ->exclude('app/Providers')
+            ->exclude('app/Http/Middleware')
             ->in(__DIR__)
     )
     ->setUsingCache(false);
