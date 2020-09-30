@@ -1,3 +1,6 @@
 [submodule "app/Modules"]
 	path = app/Modules
 	url = git@qjdata.tpddns.cn:huanglei/modules.git
+[submodule "documents"]
+	path = documents
+	url = git@github.com:Mitirrli/laravel-document.git
