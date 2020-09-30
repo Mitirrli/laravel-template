@@ -46,7 +46,7 @@ class Kernel extends HttpKernel
 
         'jwt' => [
             \App\Http\Middleware\TokenMiddleware::class,
-        ]
+        ],
     ];
 
     /**
