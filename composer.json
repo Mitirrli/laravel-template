@@ -33,12 +33,6 @@
         "phpunit/phpunit": "^9.0",
         "mitirrli/model-cache": "dev-master"
     },
-    "repositories": {
-        "model-cache": {
-            "type": "path",
-            "url": "extensions/model-cache"
-        }
-    },
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
