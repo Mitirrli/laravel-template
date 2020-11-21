@@ -48,19 +48,34 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
+        //* 验证异常
         if ($exception instanceof ValidationException) {
-            Rt()->errCode(422)->errMessage($exception->{'validator'}->errors()->first());
+            return response()->json([
+                'code' => 1003,
+                'msg' => $exception->{'validator'}->errors()->first(),
+                'data' => []
+            ]);
 
             goto loop;
         }
 
+        //* 业务异常
         if ($exception instanceof BusinessException) {
-            Rt()->errCode($exception->getCode())->errMessage($exception->getMessage());
+            return response()->json([
+                'code' => $exception->getCode() ?? 1004,
+                'msg' => $exception->getMessage() ?? 'Fail',
+                'data' => []
+            ]);
 
             goto loop;
         }
 
-        Rt()->errCode(67)->errMessage('System error!');
+        //! 系统异常
+        return response()->json([
+            'code' => 67,
+            'msg' => 'System error!',
+            'data' => []
+        ]);
 
         loop:
         return parent::render($request, $exception);
