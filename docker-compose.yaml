@@ -1,26 +1,15 @@
-version: '3.7'
+version: "3.7"
 
 services:
-  nginx:
-    container_name: skeleton_nginx
-    build:
-      context: ./
-      dockerfile: .docker/nginx/Dockerfile
-    ports:
-      - "8808:80"
-    environment:
-      TZ: 'Asia/Shanghai'
-    volumes:
-      - ./:/skeleton
   php:
     container_name: skeleton_php
     build:
       context: ./
-      dockerfile: .docker/fpm/Dockerfile
+      dockerfile: Dockerfile
     ports:
-      - "9009:9000"
+      - "8000:8000"
     volumes:
-      - ./:/skeleton
+      - ./:/tmp
   redis:
     container_name: skeleton_redis
     image: redis:latest
