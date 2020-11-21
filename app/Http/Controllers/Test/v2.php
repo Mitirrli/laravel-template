@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Test;
 
+use App\Exceptions\BusinessException;
+use App\Exceptions\SystemException;
 use App\Http\Requests\TestRequest;
 use Collective\Annotations\Routing\Annotations\Annotations\Get;
 
@@ -14,8 +16,12 @@ trait v2
      */
     public function testV2(TestRequest $request)
     {
-        $params = $request->validated();
+        $request->validated();
 
-        Rt()->message('Just for test');
+        return response()->json([
+            'code' => 1000,
+            'msg' => 'Just for test',
+            'data' => []
+        ]);
     }
 }
