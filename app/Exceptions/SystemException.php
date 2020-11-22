@@ -11,10 +11,6 @@ class SystemException extends \Exception
 {
     public function render()
     {
-        return response()->json([
-            'code' => 67,
-            'msg' => '服务器开小差了, 请稍后再试~',
-            'data' => []
-        ]);
+        return response('Server Error', 500);
     }
 }
