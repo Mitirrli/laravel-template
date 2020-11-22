@@ -56,8 +56,6 @@ class Handler extends ExceptionHandler
                 'msg' => $exception->{'validator'}->errors()->first(),
                 'data' => []
             ]);
-
-            goto loop;
         }
 
         //* 业务异常
@@ -67,8 +65,6 @@ class Handler extends ExceptionHandler
                 'msg' => $exception->getMessage() ?? 'Fail',
                 'data' => []
             ]);
-
-            goto loop;
         }
 
         //* 限制一分钟能调用接口次数
@@ -80,16 +76,11 @@ class Handler extends ExceptionHandler
             ]);
         }
 
-        dd($exception);
-
         //! 系统异常
         return response()->json([
             'code' => 67,
-            'msg' => 'System error!',
+            'msg' => '服务器开小差了, 请稍后再试~',
             'data' => []
         ]);
-
-        loop:
-        return parent::render($request, $exception);
     }
 }
