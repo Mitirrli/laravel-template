@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Illuminate\Http\Exceptions\ThrottleRequestsException;
 use Illuminate\Validation\ValidationException;
 use Throwable;
 
@@ -58,29 +57,6 @@ class Handler extends ExceptionHandler
             ]);
         }
 
-        //* 业务异常
-        if ($exception instanceof BusinessException) {
-            return response()->json([
-                'code' => $exception->getCode() ?? 1004,
-                'msg' => $exception->getMessage() ?? 'Fail',
-                'data' => []
-            ]);
-        }
-
-        //* 限制一分钟能调用接口次数
-        if ($exception instanceof ThrottleRequestsException) {
-            return response()->json([
-                'code' => 429,
-                'msg' => '操作过于频繁',
-                'data' => []
-            ]);
-        }
-
-        //! 系统异常
-        return response()->json([
-            'code' => 67,
-            'msg' => '服务器开小差了, 请稍后再试~',
-            'data' => []
-        ]);
+        return parent::render($request, $exception);
     }
 }
