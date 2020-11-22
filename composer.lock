@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1de65f6dbcc98b158bad02b442e5f4ff",
+    "content-hash": "a8579fe60d91c24bfbf1eceb46f72337",
     "packages": [
         {
             "name": "askedio/laravel-soft-cascade",
@@ -1105,16 +1105,16 @@
         },
         {
             "name": "genealabs/laravel-model-caching",
-            "version": "0.11.0",
+            "version": "0.11.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/GeneaLabs/laravel-model-caching.git",
-                "reference": "f790e9c8ef7097b39bcf893c1e7335763cb812f3"
+                "reference": "464a115348c8f44ce13c77d68b38b875e8202157"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GeneaLabs/laravel-model-caching/zipball/f790e9c8ef7097b39bcf893c1e7335763cb812f3",
-                "reference": "f790e9c8ef7097b39bcf893c1e7335763cb812f3",
+                "url": "https://api.github.com/repos/GeneaLabs/laravel-model-caching/zipball/464a115348c8f44ce13c77d68b38b875e8202157",
+                "reference": "464a115348c8f44ce13c77d68b38b875e8202157",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1174,9 +1174,9 @@
             "description": "Automatic caching for Eloquent models.",
             "support": {
                 "issues": "https://github.com/GeneaLabs/laravel-model-caching/issues",
-                "source": "https://github.com/GeneaLabs/laravel-model-caching/tree/0.11.0"
+                "source": "https://github.com/GeneaLabs/laravel-model-caching/tree/0.11.1"
             },
-            "time": "2020-09-08T15:51:40+00:00"
+            "time": "2020-11-21T15:34:18+00:00"
         },
         {
             "name": "genealabs/laravel-pivot-events",
@@ -7547,56 +7547,6 @@
             "time": "2020-05-27T16:41:55+00:00"
         },
         {
-            "name": "mitirrli/model-cache",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Mitirrli/model-cache.git",
-                "reference": "e7e8cd8cec8a694f1d5ae57dfca2a348c310685f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Mitirrli/model-cache/zipball/e7e8cd8cec8a694f1d5ae57dfca2a348c310685f",
-                "reference": "e7e8cd8cec8a694f1d5ae57dfca2a348c310685f",
-                "shasum": "",
-                "mirrors": [
-                    {
-                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
-                        "preferred": true
-                    }
-                ]
-            },
-            "default-branch": true,
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Mitirrli\\Cache\\Providers\\Service"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Mitirrli\\Cache\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Mitirrli",
-                    "email": "phper.blue@gmail.com"
-                }
-            ],
-            "support": {
-                "issues": "https://github.com/Mitirrli/model-cache/issues",
-                "source": "https://github.com/Mitirrli/model-cache/tree/master"
-            },
-            "time": "2020-09-28T09:04:35+00:00"
-        },
-        {
             "name": "mockery/mockery",
             "version": "1.4.2",
             "source": {
@@ -10019,9 +9969,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "mitirrli/model-cache": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
