@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\Exceptions\ThrottleRequestsException;
 use Illuminate\Validation\ValidationException;
 use Throwable;
 
@@ -69,6 +70,17 @@ class Handler extends ExceptionHandler
 
             goto loop;
         }
+
+        //* 限制一分钟能调用接口次数
+        if ($exception instanceof ThrottleRequestsException) {
+            return response()->json([
+                'code' => 429,
+                'msg' => '操作过于频繁',
+                'data' => []
+            ]);
+        }
+
+        dd($exception);
 
         //! 系统异常
         return response()->json([
