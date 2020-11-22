@@ -47,11 +47,6 @@ RUN wget https://mirrors.aliyun.com/composer/composer.phar -O /usr/local/bin/com
 
 WORKDIR /tmp
 
-# crontab
-COPY crontab.root /var/spool/cron/crontabs/root
-RUN chmod 0755 /var/spool/cron/crontabs/root \
-    && crontab /var/spool/cron/crontabs/root
-
-CMD crond && php -S 0.0.0.0:8000 -t public
+CMD php -S 0.0.0.0:8000 -t public
 
 EXPOSE 8000
