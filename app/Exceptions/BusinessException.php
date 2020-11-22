@@ -9,4 +9,12 @@ namespace App\Exceptions;
  */
 class BusinessException extends \Exception
 {
+    public function render()
+    {
+        return response()->json([
+            'code' => $this->getCode() ?? 1004,
+            'msg' => $this->getMessage() ?? 'Fail',
+            'data' => []
+        ]);
+    }
 }
