@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Test;
 
+use App\Events\Tested;
 use App\Http\Requests\TestRequest;
 use Collective\Annotations\Routing\Annotations\Annotations\Get;
 
@@ -15,6 +16,8 @@ trait v2
     public function testV2(TestRequest $request)
     {
         $request->validated();
+
+        event(new Tested($request));
 
         return response()->json([
             'code' => 1000,
