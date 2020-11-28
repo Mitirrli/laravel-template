@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Exceptions;
 
 /**
- * 系统异常
+ * 系统异常.
  */
 class SystemException extends \Exception
 {

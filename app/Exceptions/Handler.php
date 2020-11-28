@@ -53,7 +53,7 @@ class Handler extends ExceptionHandler
             return response()->json([
                 'code' => 1003,
                 'msg' => $exception->{'validator'}->errors()->first(),
-                'data' => []
+                'data' => [],
             ]);
         }
 

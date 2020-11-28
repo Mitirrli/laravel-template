@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Exceptions;
 
 /**
- * 业务异常
+ * 业务异常.
  */
 class BusinessException extends \Exception
 {
@@ -14,7 +14,7 @@ class BusinessException extends \Exception
         return response()->json([
             'code' => $this->getCode() ?? 1004,
             'msg' => $this->getMessage() ?? 'Fail',
-            'data' => []
+            'data' => [],
         ]);
     }
 }
