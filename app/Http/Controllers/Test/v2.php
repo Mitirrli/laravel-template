@@ -22,7 +22,7 @@ trait v2
         return response()->json([
             'code' => 1000,
             'msg' => 'Just for test',
-            'data' => []
+            'data' => [],
         ]);
     }
 }
