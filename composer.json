@@ -8,7 +8,7 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.4.0",
+        "php": "^7.4.0|^8.0",
         "ext-json": "*",
         "ext-redis": "*",
         "askedio/laravel-soft-cascade": "^8.0",
@@ -90,6 +90,11 @@
         ],
         "check-style": "php-cs-fixer fix --using-cache=no --diff --config=.php_cs --dry-run --ansi",
         "cs-fix": "php-cs-fixer fix --using-cache=no --config=.php_cs --ansi",
-        "test": "vendor/bin/phpunit --colors=always --testdox"
+        "test": "vendor/bin/phpunit --colors=always --testdox",
+        "optimize": [
+            "@php artisan config:cache",
+            "@php artisan event:cache",
+            "composer dumpautoload -o"
+        ]
     }
 }
