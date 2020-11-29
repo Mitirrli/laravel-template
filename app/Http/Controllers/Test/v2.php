@@ -11,7 +11,7 @@ use Collective\Annotations\Routing\Annotations\Annotations\Get;
 trait v2
 {
     /**
-     * @Get("/v2/test", as="测试接口v2", domain="http://127.0.0.1")
+     * @Get("/v2/test", as="测试接口v2", domain="http://0.0.0.0")
      */
     public function testV2(TestRequest $request)
     {
