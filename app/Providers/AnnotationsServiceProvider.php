@@ -19,7 +19,8 @@ class AnnotationsServiceProvider extends ServiceProvider
      * @var array
      */
     protected $scanRoutes = [
-        'App\Modules\Circle\Http\Controllers\CircleController',
+        'App\Http\Controllers\Test\TestController',
+        // 'App\Modules\Circle\Http\Controllers\CircleController',
     ];
 
     /**
